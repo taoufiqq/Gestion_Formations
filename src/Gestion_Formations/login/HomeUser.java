@@ -11,11 +11,20 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+
+
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -45,6 +54,7 @@ public class HomeUser {
 			}
 		});
 	}
+	
 
 	/**
 	 * Create the application.
@@ -52,6 +62,31 @@ public class HomeUser {
 	public HomeUser() {
 		initialize();
 		show();
+		try {
+		    String imageUrl =
+		            "http://maps.google.com/staticmap?center=40,26&zoom=1&size=150x112&maptype=satellite&key=ABQIAAAAgb5KEVTm54vkPcAkU9xOvBR30EG5jFWfUzfYJTWEkWk2p04CHxTGDNV791-cU95kOnweeZ0SsURYSA&format=jpg";
+		    String destinationFile = "image.jpg";
+		    String str = destinationFile;
+		    URL url = new URL(imageUrl);
+		    InputStream is = url.openStream();
+		    OutputStream os = new FileOutputStream(destinationFile);
+
+		    byte[] b = new byte[2048];
+		    int length;
+
+		    while ((length = is.read(b)) != -1) {
+		        os.write(b, 0, length);
+		    }
+
+		    is.close();
+		    os.close();
+		} catch (IOException e) {
+		    e.printStackTrace();
+		    System.exit(1);
+		}
+		JLabel lp2_1 = null;
+		lp2_1.setIcon(new ImageIcon((new ImageIcon("image.jpg")).getImage()
+		        .getScaledInstance(630, 600, java.awt.Image.SCALE_SMOOTH)));
 	}
 
 	/**
@@ -67,7 +102,7 @@ public class HomeUser {
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(81, 149, 1116, 330);
+		panel.setBounds(81, 149, 747, 330);
 		panel.setBackground(new Color(255, 255, 240));
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
@@ -79,7 +114,7 @@ public class HomeUser {
 		panel.add(lblNewLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(33, 82, 1055, 237);
+		scrollPane.setBounds(33, 82, 688, 237);
 		panel.add(scrollPane);
 		
 		table = new JTable();
@@ -102,7 +137,7 @@ public class HomeUser {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(128, 0, 0));
-		panel_1.setBounds(360, 490, 586, 87);
+		panel_1.setBounds(168, 490, 586, 87);
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -128,6 +163,17 @@ public class HomeUser {
 		panel_1.add(btnNewButton);
 		
 		JButton btnDetailsFormation = new JButton("Details Formation");
+		btnDetailsFormation.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					String url = "http://localhost:3000/Session/4";
+					java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+			}
+		});
 		btnDetailsFormation.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnDetailsFormation.setBounds(311, 22, 232, 42);
 		panel_1.add(btnDetailsFormation);
@@ -144,7 +190,36 @@ public class HomeUser {
 		btnLogOut.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnLogOut.setBounds(1099, 27, 115, 45);
 		frame.getContentPane().add(btnLogOut);
+		
+		JPanel map = new JPanel();
+		map.setBounds(848, 103, 435, 409);
+		frame.getContentPane().add(map);
+		
+//	     try {
+//	            String imageUrl = "http://maps.google.com/staticmap?center=40,26&zoom=1&size=150x112&maptype=satellite&key=ABQIAAAAgb5KEVTm54vkPcAkU9xOvBR30EG5jFWfUzfYJTWEkWk2p04CHxTGDNV791-cU95kOnweeZ0SsURYSA&format=jpg";
+//	            String destinationFile = "image.jpg";
+//	            String str = destinationFile;
+//	            URL url = new URL(imageUrl);
+//	            InputStream is = url.openStream();
+//	            OutputStream os = new FileOutputStream(destinationFile);
+//
+//	            byte[] b = new byte[2048];
+//	            int length;
+//
+//	            while ((length = is.read(b)) != -1) {
+//	                os.write(b, 0, length);
+//	            }
+//
+//	            is.close();
+//	            os.close();
+//	        } catch (IOException e) {
+//	            e.printStackTrace();
+//	            System.exit(1);
+//	        }
+//
+//	        frame.add(new JPanel(new ImageIcon((new ImageIcon("image.jpg")).getImage().getScaledInstance(630, 600,java.awt.Image.SCALE_SMOOTH))));
 	}
+	
 	public void show() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
