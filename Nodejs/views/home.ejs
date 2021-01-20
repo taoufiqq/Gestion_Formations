@@ -43,6 +43,23 @@
     height: 20vh;
     background: rgba(119, 54, 110, 0.5);
 }
+#map {
+            border: 2px solid #333;
+            width: 40vw;
+            height: 40vh;
+            display:flex;
+            margin-left: 25%;
+            margin-top: 18%;
+
+        }
+@media screen and (max-width: 650px){
+      #map{     
+        width: 65vw;
+        height: 38vh;
+        margin-left: 0%;
+        margin-top: 78%;
+      }
+}
 
 
    </style>
@@ -56,10 +73,34 @@
         <td>Session d'<%= item.libelle %></td>
         <br><br>
         <td>Formation <%= item.formation %></td>
+  
     </tr>
     <% }); %>
      
     </div> 
+  <div id="map"></div>
+
+
+    <script>
+    function initMap(){
+
+        var location = {
+            lat : 32.309879,
+            lng: -9.232620
+        }
+        var map =   map = new google.maps.Map(document.getElementById("map"),{
+               zoom: 16,
+               center:location
+        });
+    }
+    </script>
+    <script async defer src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBYzXj5wF4L6mChyyc5xwfb2QT1QEZ9VN8&callback=initMap">
+    
+    
+    
+    </script>
+   
+    
 </body>
 
 </html>
