@@ -62,31 +62,7 @@ public class HomeUser {
 	public HomeUser() {
 		initialize();
 		show();
-		try {
-		    String imageUrl =
-		            "http://maps.google.com/staticmap?center=40,26&zoom=1&size=150x112&maptype=satellite&key=ABQIAAAAgb5KEVTm54vkPcAkU9xOvBR30EG5jFWfUzfYJTWEkWk2p04CHxTGDNV791-cU95kOnweeZ0SsURYSA&format=jpg";
-		    String destinationFile = "image.jpg";
-		    String str = destinationFile;
-		    URL url = new URL(imageUrl);
-		    InputStream is = url.openStream();
-		    OutputStream os = new FileOutputStream(destinationFile);
 
-		    byte[] b = new byte[2048];
-		    int length;
-
-		    while ((length = is.read(b)) != -1) {
-		        os.write(b, 0, length);
-		    }
-
-		    is.close();
-		    os.close();
-		} catch (IOException e) {
-		    e.printStackTrace();
-		    System.exit(1);
-		}
-		JLabel lp2_1 = null;
-		lp2_1.setIcon(new ImageIcon((new ImageIcon("image.jpg")).getImage()
-		        .getScaledInstance(630, 600, java.awt.Image.SCALE_SMOOTH)));
 	}
 
 	/**
@@ -102,7 +78,7 @@ public class HomeUser {
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(81, 149, 747, 330);
+		panel.setBounds(81, 149, 1126, 330);
 		panel.setBackground(new Color(255, 255, 240));
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
@@ -114,7 +90,7 @@ public class HomeUser {
 		panel.add(lblNewLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(33, 82, 688, 237);
+		scrollPane.setBounds(33, 82, 1064, 237);
 		panel.add(scrollPane);
 		
 		table = new JTable();
@@ -137,7 +113,7 @@ public class HomeUser {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(128, 0, 0));
-		panel_1.setBounds(168, 490, 586, 87);
+		panel_1.setBounds(333, 490, 586, 87);
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -162,7 +138,7 @@ public class HomeUser {
 		btnNewButton.setBounds(38, 22, 232, 42);
 		panel_1.add(btnNewButton);
 		
-		JButton btnDetailsFormation = new JButton("Details Formation");
+		JButton btnDetailsFormation = new JButton("Details Session");
 		btnDetailsFormation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -191,33 +167,6 @@ public class HomeUser {
 		btnLogOut.setBounds(1099, 27, 115, 45);
 		frame.getContentPane().add(btnLogOut);
 		
-		JPanel map = new JPanel();
-		map.setBounds(848, 103, 435, 409);
-		frame.getContentPane().add(map);
-		
-//	     try {
-//	            String imageUrl = "http://maps.google.com/staticmap?center=40,26&zoom=1&size=150x112&maptype=satellite&key=ABQIAAAAgb5KEVTm54vkPcAkU9xOvBR30EG5jFWfUzfYJTWEkWk2p04CHxTGDNV791-cU95kOnweeZ0SsURYSA&format=jpg";
-//	            String destinationFile = "image.jpg";
-//	            String str = destinationFile;
-//	            URL url = new URL(imageUrl);
-//	            InputStream is = url.openStream();
-//	            OutputStream os = new FileOutputStream(destinationFile);
-//
-//	            byte[] b = new byte[2048];
-//	            int length;
-//
-//	            while ((length = is.read(b)) != -1) {
-//	                os.write(b, 0, length);
-//	            }
-//
-//	            is.close();
-//	            os.close();
-//	        } catch (IOException e) {
-//	            e.printStackTrace();
-//	            System.exit(1);
-//	        }
-//
-//	        frame.add(new JPanel(new ImageIcon((new ImageIcon("image.jpg")).getImage().getScaledInstance(630, 600,java.awt.Image.SCALE_SMOOTH))));
 	}
 	
 	public void show() {
